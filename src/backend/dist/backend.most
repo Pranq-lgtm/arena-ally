@@ -1,0 +1,109 @@
+// Version: 1.0.0
+type ActivityType__291397608 = {#group; #solo};
+type Activity__1027287507 =
+  {
+    activityType : ActivityType__291397608;
+    id : Nat;
+    notes : Text;
+    sport : Sport__81948314;
+    timestamp : Timestamp__301639476
+  };
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type List__529703492<T> =
+  {
+    var blockIndex : Nat__1040412405;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__1040412405
+  };
+type List__560604548<T> = List__529703492<T>;
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type ObjectiveStatus__170953233 = {#active; #completed};
+type Sport__81948314 = Text;
+type TeamObjective__944377829 =
+  {
+    createdAt : Timestamp__301639476;
+    currentProgress : Nat;
+    description : Text;
+    id : Nat;
+    rewardBadge : Text;
+    rewardText : Text;
+    sport : Sport__81948314;
+    status : ObjectiveStatus__170953233;
+    targetCount : Nat;
+    title : Text
+  };
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserObjective__817222659 =
+  {acceptedAt : Timestamp__301639476; objectiveId : Nat; progress : Nat};
+type UserProfile__446616884 =
+  {
+    id : UserId__158757552;
+    name : Text;
+    onboardingComplete : Bool;
+    sports : [Sport__81948314]
+  };
+type UserRole__1073662873 = {#admin; #guest; #user};
+type WellnessTip__103584694 =
+  {
+    generatedAt : Timestamp__301639476;
+    isBurnoutRisk : Bool;
+    socialBattery : Nat;
+    tip : Text
+  };
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__222667396<Principal, UserRole__1073662873>
+    };
+  stable activityCounters :
+    {
+      var root : Node__1000929467<UserId__158757552, Nat>;
+      var size : Nat__1040412405
+    };
+  stable activityLog :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<Activity__1027287507>>;
+      var size : Nat__1040412405
+    };
+  stable globalObjectives :
+    {
+      var blockIndex : Nat__1040412405;
+      var blocks : [var [var ?TeamObjective__944377829]];
+      var elementIndex : Nat__1040412405
+    };
+  stable initState : {var seeded : Bool};
+  stable objectiveCounter : {var value : Nat};
+  stable openAIApiKey : {var value : ?Text};
+  stable profiles :
+    {
+      var root : Node__1000929467<UserId__158757552, UserProfile__446616884>;
+      var size : Nat__1040412405
+    };
+  stable tipStore :
+    {
+      var root : Node__1000929467<UserId__158757552, WellnessTip__103584694>;
+      var size : Nat__1040412405
+    };
+  stable userObjectives :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<UserObjective__817222659>>;
+      var size : Nat__1040412405
+    }
+};

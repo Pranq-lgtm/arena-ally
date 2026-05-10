@@ -1,0 +1,26 @@
+{
+  "overview": "Arena Ally is a social sports app that fights the loneliness epidemic by using sports as a bridge to genuine connection. It tracks your Social Battery (group vs solo activity balance), offers gamified Team Objectives to complete together with others, and provides an AI wellness coach that adapts to your activity patterns and flags burnout risk.",
+  "features": [
+    "Internet Identity login with protected routes",
+    "Sport preferences onboarding",
+    "Social Battery dashboard with score, activity log, and well-being risk flag",
+    "Log group or solo activities to update your score in real time",
+    "Gamified Team Objectives with progress bars and reward badges",
+    "AI Wellness Coach powered by OpenAI (admin-set shared key) with rule-based fallback",
+    "Profile page: view and edit sport preferences",
+    "Sample demo content pre-populated so the app feels alive immediately",
+    "Responsive mobile and desktop layout"
+  ],
+  "category": "productivity",
+  "tags": [
+    "sports",
+    "wellness",
+    "gamification",
+    "social",
+    "ai-coach",
+    "team-objectives",
+    "social-battery",
+    "community"
+  ],
+  "last_updated": "2026-05-10T05:31:20.633Z"
+}

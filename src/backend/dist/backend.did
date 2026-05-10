@@ -1,0 +1,85 @@
+type WellnessTip = 
+ record {
+   generatedAt: Timestamp;
+   isBurnoutRisk: bool;
+   socialBattery: nat;
+   tip: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   id: UserId;
+   name: text;
+   onboardingComplete: bool;
+   sports: vec Sport;
+ };
+type UserObjective = 
+ record {
+   acceptedAt: Timestamp;
+   objectiveId: nat;
+   progress: nat;
+ };
+type UserId = principal;
+type Timestamp = int;
+type TeamObjective = 
+ record {
+   createdAt: Timestamp;
+   currentProgress: nat;
+   description: text;
+   id: nat;
+   rewardBadge: text;
+   rewardText: text;
+   sport: Sport;
+   status: ObjectiveStatus;
+   targetCount: nat;
+   title: text;
+ };
+type Sport = text;
+type ObjectiveStatus = 
+ variant {
+   active;
+   completed;
+ };
+type ActivityType = 
+ variant {
+   group;
+   solo;
+ };
+type Activity = 
+ record {
+   activityType: ActivityType;
+   id: nat;
+   notes: text;
+   sport: Sport;
+   timestamp: Timestamp;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  acceptTeamObjective: (objectiveId: nat) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  getAvailableSports: () -> (vec Sport) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getMyActivities: () -> (vec Activity) query;
+  getMyObjectives: () -> (vec record {
+                                TeamObjective;
+                                UserObjective;
+                              }) query;
+  getMySocialBattery: () -> (nat) query;
+  getMyWellnessTip: () -> (opt WellnessTip) query;
+  getUserProfile: (user: UserId) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  isOpenAIConfigured: () -> (bool) query;
+  listTeamObjectives: () -> (vec TeamObjective) query;
+  logActivity: (sport: Sport, activityType: ActivityType, notes: text) ->
+   (Activity);
+  refreshMyWellnessTip: () -> (WellnessTip);
+  saveCallerUserProfile: (name: text, sports: vec Sport, onboardingComplete:
+   bool) -> ();
+  setOpenAIApiKey: (key: text) -> ();
+}
