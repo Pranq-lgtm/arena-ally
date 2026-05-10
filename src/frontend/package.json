@@ -12,7 +12,7 @@
     "fix": "biome check --write src"
   },
   "devDependencies": {
-    "webpack-cli": "^5.x.x",
+    "webpack-cli": "^5.0.0",
     "@biomejs/biome": "^1.9.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/node": "^20.9.0",
