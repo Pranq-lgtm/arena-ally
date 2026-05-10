@@ -24,7 +24,4 @@
   ],
   "last_updated": "2026-05-10T05:31:20.633Z"
 }
-"devDependencies": {
-  "webpack": "^5.x",
-  "webpack-cli": "^5.x"
-}
+
